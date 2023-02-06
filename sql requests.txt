@@ -1,0 +1,21 @@
+2) SELECT MAX(u.posts_qty) FROM `users` as u
+LEFT JOIN  `groups` as g ON 
+u.group_id = g.id  GROUP BY g.id
+
+3) SELECT *, COUNT(u.id) as count_users FROM `users` as u
+INNER JOIN  `groups` as g ON 
+u.group_id = g.id GROUP BY g.id  HAVING count_users > 1000
+
+5) SELECT  MAX(quty)
+FROM
+(
+   SELECT SUM(u.posts_qty) as quty FROM `users` as u
+ 	GROUP BY u.group_id
+) a
+
+
+INSERT INTO `users`(`id`,`group_id`, `invited_by_user_id`, `name`, `posts_qty`) VALUES (6,1,2,'Hakob',3)
+UPDATE `users` SET `name`='Hakob Sargsyan' WHERE `id` = 6
+
+
+CREATE INDEX optimize_search ON users ( name, posts_qty)
